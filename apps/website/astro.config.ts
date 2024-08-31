@@ -1,5 +1,4 @@
-/* eslint-disable node/prefer-global/process -- I dev on a VPS */
-
+import process from 'node:process';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import cloudflare from '@astrojs/cloudflare';
