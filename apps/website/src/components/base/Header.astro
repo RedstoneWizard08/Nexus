@@ -25,7 +25,10 @@ const {
 	inheritSize = false,
 	...attr
 } = Astro.props;
+
 const Element = sizes[size] as any; // Unfortunately gotta do this
+// ^^^ WHY DOES ASTRO LET YOU DO THIS
+//     IT MAKES NO SENSE
 
 let className: string | string[] = [];
 if (!inheritSize)

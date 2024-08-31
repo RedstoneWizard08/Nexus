@@ -1,3 +1,5 @@
+/* eslint-disable node/prefer-global/process -- I dev on a VPS */
+
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import cloudflare from '@astrojs/cloudflare';
@@ -17,9 +19,25 @@ export default defineConfig({
 		mdx(),
 		sitemap(),
 	],
+	server: process.env.REDSTONE_IS_DUMB
+		? {
+				port: 4000,
+			}
+		: {},
 	vite: {
 		ssr: {
 			noExternal: ['smartypants'],
 		},
+		server: process.env.REDSTONE_IS_DUMB
+			? {
+					port: 4000,
+					strictPort: true,
+					hmr: {
+						clientPort: 443,
+						port: 4000,
+						protocol: 'wss',
+					},
+				}
+			: {},
 	},
 });
